@@ -17,7 +17,11 @@ router.get('/', (req,res,next) => {
     })
     //GET users
     router.get('/users', (req, res, next) =>{
-        res.render('users');
+        User.find({})
+        .then(users => {
+            
+            res.render('users', {users});
+        })
     })
     //GET user/add
     router.get('/user/add', (req,res,next) => {
