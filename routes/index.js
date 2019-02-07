@@ -15,9 +15,13 @@ router.get('/', (req,res,next) => {
     router.get('/user', (req, res, next) =>{
         res.render('user');
     })
+    //GET users
+    router.get('/users', (req, res, next) =>{
+        res.render('users');
+    })
     //GET user/add
     router.get('/user/add', (req,res,next) => {
-        res.render('user-add');
+        res.render('add-user');
     })
     //POST user/add
     router.post('/user/add', (req, res, next) => {
@@ -54,3 +58,5 @@ router.get('/auth/facebook', (req, res, next) => {
 router.get('/auth/facebook', (req,res,next) => {
 
 })
+
+module.exports = router;

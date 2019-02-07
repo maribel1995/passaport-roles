@@ -11,7 +11,7 @@ const userSchema = new Schema ({
         type: String,
         enum:['BOSS', 'DEVELOPER', 'TA', 'STUDENT']
     },
-    picture
+    picture: String
 },{
     timestamps: {
         createdAt: "created_at",
