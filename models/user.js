@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema ({
     name:String,
     bio: String,
+    email: String,
+    password: String,
     courses: [{type: Schema.Types.ObjectId, ref:'Course'}],
     role: {
         type: String,
