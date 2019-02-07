@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const usersSchema = new Schema ({
+const userSchema = new Schema ({
     name:String,
     bio: String,
-    courses: [{type: Schema.Types.ObjectId, ref:'Courses'}],
+    courses: [{type: Schema.Types.ObjectId, ref:'Course'}],
     role: {
         type: String,
         enum:['BOSS', 'DEVELOPER', 'TA', 'STUDENT']
-    }
+    },
+    picture
 },{
     timestamps: {
         createdAt: "created_at",
@@ -16,5 +17,5 @@ const usersSchema = new Schema ({
     }
 });
 
-const Users = mongoose.model('Users', usersSchema);
-module.exports = Users;
+const user = mongoose.model('User', userSchema);
+module.exports = user;
