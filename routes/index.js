@@ -41,8 +41,8 @@ router.get('/', (req,res,next) => {
 
 
 //GET course
-router.get('/course', (req,res,next) => {
-    res.render('course');
+router.get('/courses', (req,res,next) => {
+    res.render('courses');
 });
 
 //GET login and logout
