@@ -18,9 +18,9 @@
                         <th scope="row">{{name}}</th>
                         <td>{{role}}</td>
                         <td>
-                            <form action="/user/delete?user_id={{_id}}" method='post'>
+                            <form id="form-user" action="/user/delete?user_id={{_id}}" method='post'>
                             <a class="btn btn-info" href="/user/edit?user_id={{_id}}" role="button">Edit</a>
-                            <button class="btn btn-danger">Delete</button>
+                            <button id="deleteUser" class="btn btn-danger" >Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -29,7 +29,7 @@
             </table>
         </div>
         <div class="box">
-            <a class="btn btn-success" href="/user/add" role="button">Add</a>
+            <a  id="addUser" class="btn btn-success" href="/user/add" role="button">Add</a>
         </div>
     </div>
 </div>
