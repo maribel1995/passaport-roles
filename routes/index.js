@@ -42,8 +42,65 @@ router.get('/', (req,res,next) => {
 
 //GET course
 router.get('/courses', (req,res,next) => {
-    res.render('courses');
+    Course.find({})
+    .then(course => {
+        
+        res.render('courses', {course});
+    })
 });
+
+//GET course/details
+
+router.get('/course/details', (req,res,next) =>{
+    Course.findOne({'_id':req.query.course_id})
+    .then(course => {
+        res.render('course-details', {course})
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
+//GET course/add
+router.get('/course/add', (req,res,next) => {
+    res.render('add-course');
+})
+//POST course/add
+router.post('/course/add', (req, res, next) => {
+    const {title, description, level, hours, price, image} = req.body;
+    const newCourse = new Course({title, description, level, hours, price, image});
+
+    newCourse.save()
+    .then(course => {
+        res.redirect('/courses')
+    })
+    .catch(err => {throw new Error(err)});
+})
+
+//GET course/edit
+router.get('/course/edit', (req,res,next) =>{
+    Course.findOne({'_id':req.query.course_id})
+    .then(course => {
+        res.render('edit-course', {course})
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
+//POST course/
+router.post('/course/edit', (req,res,next) => {
+    const {title,description, level, hours, price,image} = req.body;
+
+    Course.update({'_id': req.query.course_id}, {$set: {title, description, level, hours,price,image}}, {new:true})
+    .then(course => {
+        res.redirect('/courses');
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
 
 //GET login and logout
 router.get('/login', (req,res,next) => {

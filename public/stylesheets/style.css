@@ -1,3 +1,26 @@
 .box{
     margin:10px;
 }
+.course-structure{
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.course-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+.course-structure img{
+    padding: 20px;
+}
+.description{
+    padding:20px;
+}
+.description i{
+    float:right
+}
+
+.description a{
+    text-decoration: none;
+}
+

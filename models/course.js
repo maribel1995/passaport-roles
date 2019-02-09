@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const courseSchema = new Schema ({
     title: String,
     description: String,
-    level: String,
+    level: {
+        type: String,
+        enum:['Beginner', 'Intermediate', 'Advanced']
+    },
     hours: String,
     price: String,
     image: String
