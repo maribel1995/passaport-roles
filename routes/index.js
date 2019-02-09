@@ -19,7 +19,6 @@ router.get('/user', (req, res, next) => {
 })
 //GET users
 router.get('/users', (req, res, next) => {
-    console.log(req.user)
     User.find({})
         .then(users => {
 

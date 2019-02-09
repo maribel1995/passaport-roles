@@ -9,6 +9,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const logger       = require('morgan');
 const path         = require('path');
 const app = express();
@@ -55,6 +56,44 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+//passport Facebook
+passport.use(new FacebookStrategy({
+  clientID: '346323932635843',
+  clientSecret: '7a84c2145d13339d0a9ec9c180f06c6d',
+  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'photos', 'email']
+},
+(accessToken, refreshToken, profile, done) =>{
+
+User.findOne({facebookId: profile.id})
+.then((user,err) => {
+  if(err){
+    return done(err);
+  }
+  if(user){
+    return done(null, user);
+  }
+
+  const newUser = new User({
+    email: profile._json.email,
+    name:profile.displayName,
+    role: 'STUDENT',
+    facebookId: profile.id
+  })
+  console.log(profile._json)
+
+  newUser.save()
+  .then(user => {
+    done(null, newUser);
+  })
+  .catch(erro => {
+    done(error)
+  })
+})
+}
+));
+
+//passport LocalStratedy
 passport.use(new LocalStrategy({
   usernameField: 'email',
   //passReqToCallback:true

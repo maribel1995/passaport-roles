@@ -28,12 +28,10 @@ router.get('/logout', (req,res,next) => {
 
 
 //GET login facebook
-router.get('/auth/facebook', (req, res, next) => {
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'public_profile,email'}));
 
-})
-
-router.get('/auth/facebook', (req,res,next) => {
-
-})
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' })
+);
 
 module.exports = router;
