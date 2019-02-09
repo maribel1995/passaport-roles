@@ -1,29 +1,41 @@
 <div class="box">
     <div class="container">
 
-        <h1>Courses</h1>
+        <h1>All Courses</h1>
         <hr />
+        <div class="box">
+            <a class="btn btn-success" href="/course/add" role="button">Add</a>
+        </div>
         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
             <div class="course-container">
                 {{#each course}}
                 <div class="course-structure">
                     <div class="img">
-                        <img src='{{image}}' class="rounded mx-auto d-block"/>
+                        <img src='{{image}}' class="rounded mx-auto d-block" />
                     </div>
                     <div class="description">
                         <h3><a href='/course/details?course_id={{_id}}' role="button">{{title}}</a></h3>
                         <label>{{description}}</label><br />
                         <label>{{level}} | {{hours}}</label><br />
                         <strong>R$ {{price}}</strong>
-                        <a href='/course/edit?course_id={{_id}}' role="button"><i class="fas fa-cog"></i></a>
+                        <p>
+                            <form id="form-course" action="/user/enroll?course_id={{_id}}" method='post'>
+                                <button id="enrollCourse" class="btn btn-success">Enroll</button>
+                            </form>
+                        </p>
+
+                        <div class='adm'>
+                            <form id="form-course" action="/course/delete?course_id={{_id}}" method='post'>
+                                <button id="deleteCourse" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href='/course/edit?course_id={{_id}}'><i class="fas fa-cog"></i></a>
+                        </div>
                     </div>
 
                 </div>
                 {{/each}}
             </div>
         </div>
-        <div class="box">
-            <a class="btn btn-success" href="/course/add" role="button">Add</a>
-        </div>
+
     </div>
 </div>

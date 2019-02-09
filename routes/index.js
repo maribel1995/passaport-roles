@@ -70,6 +70,18 @@ router.get('/', (req,res,next) => {
             console.log(error)
         })
     })
+//POST user/enroll
+router.post('/user/enroll', (req,res,next) => {
+    // const {title,description, level, hours, price,image} = req.body;
+
+    // User.update({'_id': req.query.course_id}, {$set: {title, description, level, hours,price,image}}, {new:true})
+    // .then(course => {
+    //     res.redirect('/users');
+    // })
+    // .catch(error => {
+    //     console.log(error)
+    // })
+})
 
 
 //GET course
@@ -133,6 +145,16 @@ router.post('/course/edit', (req,res,next) => {
     })
 })
 
+    //DELETE course/delete
+    router.post('/course/delete', (req, res, next) => {
+        Course.deleteOne({'_id': req.query.course_id})
+        .then(course => {
+            res.redirect('/courses')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    })
 
 //GET login and logout
 router.get('/login', (req,res,next) => {

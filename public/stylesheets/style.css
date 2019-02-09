@@ -3,6 +3,13 @@
 }
 .course-structure{
     box-shadow: 1px 1px 1px 1px #ccc;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.adm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .course-container{
@@ -16,11 +23,22 @@
 .description{
     padding:20px;
 }
-.description i{
+
+
+.adm i{
     float:right
 }
 
 .description a{
     text-decoration: none;
 }
+
+.description p{
+    text-align: center;
+}
+
+.container ul li{
+    list-style-type: none;
+}
+
 
