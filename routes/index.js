@@ -112,6 +112,21 @@ router.post('/user/delete', (req, res, next) => {
         .catch(error => {
             console.log(error)
         })
+
+    })
+
+    //POST user/enroll
+router.post('/user/enroll', (req,res,next) => {
+    // const {title,description, level, hours, price,image} = req.body;
+
+    // User.update({'_id': req.query.course_id}, {$set: {title, description, level, hours,price,image}}, {new:true})
+    // .then(course => {
+    //     res.redirect('/users');
+    // })
+    // .catch(error => {
+    //     console.log(error)
+    // })
+
 })
 
 
@@ -216,10 +231,12 @@ router.post('/course/edit', (req, res, next) => {
         })
         .then(course => {
             res.redirect('/courses');
+
         })
         .catch(error => {
             console.log(error)
         })
-})
+    })
+
 
 module.exports = router;
