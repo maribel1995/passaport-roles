@@ -10,7 +10,8 @@ const courseSchema = new Schema ({
     },
     hours: String,
     price: String,
-    image: String
+    image: String,
+    users: [{type: Schema.Types.ObjectId, ref:'User'}],
 },{
     timestamps: {
         createdAt: "created_at",

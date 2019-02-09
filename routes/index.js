@@ -29,14 +29,46 @@ router.get('/', (req,res,next) => {
     })
     //POST user/add
     router.post('/user/add', (req, res, next) => {
-        const {name, bio, role, email, password} = req.body;
-        const newUser = new User({name, bio, role, email, password});
+        const {name,role, email, password} = req.body;
+        const newUser = new User({name, role, email, password});
 
         newUser.save()
         .then(user => {
             res.redirect('/users')
         })
         .catch(err => {throw new Error(err)});
+    })
+    //GET user/edit
+    router.get('/user/edit', (req,res,next) => {
+        User.findOne({'_id': req.query.user_id})
+        .then(user => {
+            res.render('edit-user', {user})
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    })
+    //POST user/edit
+    router.post('/user/edit', (req,res,next) => {
+        const {name,role, email, password} = req.body;
+
+        User.update({'_id': req.query.user_id}, {$set: {name, role, email, password}}, {new:true})
+        .then(user => {
+            res.redirect('/users');
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    })
+    //DELETE user/delete
+    router.post('/user/delete', (req, res, next) => {
+        User.deleteOne({'_id': req.query.user_id})
+        .then(user => {
+            res.redirect('/users')
+        })
+        .catch(error => {
+            console.log(error)
+        })
     })
 
 
